@@ -8,7 +8,7 @@ rpi2_hyp_boot.o:
 	$(CC) -O2 -march=armv7-a -nostartfiles -nostdlib rpi2-hyp-boot.S -c -o rpi2-hyp-boot.o
 
 rpi2_hyp_boot: rpi2_hyp_boot.o
-	$(LD) -pie --gc-sections -Bstatic -T rpi2-hyp-boot.lds -o rpi2-hyp-boot rpi2-hyp-boot.o
+	$(LD) -pie --no-dynamic-linker --gc-sections -Bstatic -T rpi2-hyp-boot.lds -o rpi2-hyp-boot rpi2-hyp-boot.o
 
 rpi2_hyp_boot.bin: rpi2_hyp_boot
 	$(OBJCOPY) --gap-fill=0xff -O binary rpi2-hyp-boot rpi2-hyp-boot.bin
